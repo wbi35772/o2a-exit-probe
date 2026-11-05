@@ -1,0 +1,4 @@
+ip=40.75.133.106
+http=429
+body:
+{"type":"error","error":{"type":"FreeUsageLimitError","message":"Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"}}
