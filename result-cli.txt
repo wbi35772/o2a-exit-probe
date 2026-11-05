@@ -1,0 +1,15 @@
+1.19.5
+ip=134.33.76.9
+[0m
+> build · beam-free
+[0m
+exit=124
+total 608
+drwxr-xr-x 5 runner runner   4096 Nov  5 18:15 .
+drwxr-xr-x 3 runner runner   4096 Nov  5 18:15 ..
+drwxr-xr-x 2 runner runner   4096 Nov  5 18:15 log
+-rw-r--r-- 1 runner runner   4096 Nov  5 18:15 opencode.db
+-rw-r--r-- 1 runner runner  32768 Nov  5 18:15 opencode.db-shm
+-rw-r--r-- 1 runner runner 564472 Nov  5 18:15 opencode.db-wal
+drwxr-xr-x 2 runner runner   4096 Nov  5 18:15 repos
+drwxr-xr-x 3 runner runner   4096 Nov  5 18:15 snapshot
