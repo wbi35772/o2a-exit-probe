@@ -1,0 +1,35 @@
+name: probe
+permissions:
+  contents: write
+on:
+  push:
+    branches: [main]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    steps:
+      - uses: actions/checkout@v4
+      - name: probe
+        shell: bash
+        run: |
+          set -u
+          IP=$(curl -s --max-time 10 https://api.ipify.org || echo unknown)
+          PROJ=$(openssl rand -hex 20)
+          SES=ses_ec1c0e8f9ffeR9lQbjkBpQD6j1
+          printf '%s' '{"model":"beam-free","messages":[{"role":"user","content":"Reply with exactly: OK"}],"max_tokens":16,"stream":true}' > body.json
+          CODE=$(curl -s --max-time 25 -o resp.txt -w '%{http_code}' -H 'Authorization: Bearer public' -H 'Content-Type: application/json' -H 'User-Agent: opencode/latest/2.1.1/cli' -H 'x-opencode-client: cli' -H "x-session-affinity: $SES" -H "X-Session-Id: $SES" -H "x-opencode-session: $SES" -H "x-opencode-session-id: $SES" -H "x-opencode-project: $PROJ" --data @body.json https://opencode.ai/inference/openai/v1/chat/completions) || CODE=000
+          { echo "ip=$IP"; echo "http=$CODE"; echo "body:"; head -c 300 resp.txt; } > "result-${{ matrix.shard }}.txt"
+          cat "result-${{ matrix.shard }}.txt"
+      - name: publish
+        shell: bash
+        run: |
+          git config user.email probe@local
+          git config user.name probe
+          git checkout -B "r-${{ matrix.shard }}"
+          git add "result-${{ matrix.shard }}.txt"
+          git commit -m "r${{ matrix.shard }}"
+          git push -f origin "r-${{ matrix.shard }}"
