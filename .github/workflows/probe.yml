@@ -1,4 +1,4 @@
-name: v1probe
+name: v1probe2
 permissions:
   contents: write
 on:
@@ -10,16 +10,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: install
-        run: curl -fsSL https://opencode.ai/install | bash
+        shell: bash
+        continue-on-error: true
+        run: curl -fsSL https://opencode.ai/install | bash || echo install-failed
       - name: run
         shell: bash
+        continue-on-error: true
         run: |
+          set +e
           export PATH="$HOME/.opencode/bin:$PATH"
           export CI=1
           IP=$(curl -s --max-time 10 https://api.ipify.org)
           opencode --version > out.txt 2>&1
           echo "ip=$IP" >> out.txt
-          set +e
           timeout 150 opencode run -m opencode/beam-free --print-logs "Reply with exactly: OK" >> out.txt 2>&1
           echo "exit=$?" >> out.txt
           echo "== logs ==" >> out.txt
@@ -29,12 +32,13 @@ jobs:
           sqlite3 "$HOME/.local/share/opencode/opencode.db" "select id,role,substr(parts,1,300) from message order by rowid desc limit 6;" >> out.txt 2>&1
           head -60 out.txt
       - name: publish
+        if: always()
         shell: bash
         run: |
           git config user.email probe@local
           git config user.name probe
           git checkout -B cli2
-          cp out.txt result-cli2.txt
+          cp out.txt result-cli2.txt 2>/dev/null || echo no-output > result-cli2.txt
           git add result-cli2.txt
           git commit -m cli2
           git push -f origin cli2
@@ -44,29 +48,27 @@ jobs:
       - uses: actions/checkout@v4
       - name: probe
         shell: bash
+        continue-on-error: true
         run: |
-          set -u
+          set +e
           IP=$(curl -s --max-time 10 https://api.ipify.org)
-          read SES REQ PROJ <<< $(python3 -c "
-import time,secrets,string,random
-a=string.ascii_letters+string.digits
-r=lambda n:''.join(secrets.choice(a) for _ in range(n))
-ms=int(time.time()*1000); day=ms-ms%86400000; off=random.randrange(0,2592000000)
-cur=((day-off)<<12)|1; inv=(~cur)&((1<<48)-1)
-ses='ses_'+format(inv,'012x')+r(14)
-msg='msg_'+format((ms<<12)&((1<<48)-1),'012x')+r(14)
-print(ses,msg,''.join(secrets.choice('0123456789abcdef') for _ in range(40)))
-")
-          printf '%s' '{"model":"beam-free","messages":[{"role":"user","content":"Reply with exactly: OK"}],"max_tokens":16,"stream":true}' > body.json
-          CODE=$(curl -s --max-time 30 -o resp.txt -w '%{http_code}' -H 'Accept: */*' -H 'Authorization: Bearer public' -H 'Content-Type: application/json' -H 'User-Agent: opencode/1.19.5 ai-sdk/provider-utils/4.0.23 runtime/bun/1.3.14' -H 'x-opencode-client: cli' -H "x-opencode-session: $SES" -H "x-opencode-session-id: $SES" -H "x-opencode-request: $REQ" -H "x-opencode-project: $PROJ" --data @body.json https://opencode.ai/zen/v1/chat/completions) || CODE=000
-          { echo "ip=$IP"; echo "ses=$SES"; echo "req=$REQ"; echo "http=$CODE"; echo "body:"; head -c 600 resp.txt; } > result-v1.txt
+          MS=$(($(date +%s%N)/1000000))
+          TP=$(printf '%012x' $(( (MS << 12) & 281474976710655 )))
+          SES=ses_ec1c0e8f9ffeR9lQbjkBpQD6j1
+          REQ=msg_${TP}$(head -c 30 /dev/urandom | base64 | tr -dc '0-9A-Za-z' | head -c 14)
+          PROJ=$(openssl rand -hex 20)
+          printf '%s' '{"model":"beam-free","messages":[{"role":"user","content":"Reply with exactly: OK"}],"max_tokens":16,"stream":true}' > v1body.json
+          CODE=$(curl -s --max-time 30 -o v1resp.txt -w '%{http_code}' https://opencode.ai/zen/v1/chat/completions -H 'Accept: */*' -H 'User-Agent: opencode/1.19.5 ai-sdk/provider-utils/4.0.23 runtime/bun/1.3.14' -H 'Content-Type: application/json' -H 'x-opencode-client: cli' -H "x-opencode-session: $SES" -H "x-opencode-session-id: $SES" -H "x-opencode-request: $REQ" -H "x-opencode-project: $PROJ" -H 'Authorization: Bearer public' --data @v1body.json)
+          { echo "ip=$IP"; echo "http=$CODE"; echo "body:"; head -c 300 v1resp.txt; } > result-v1.txt
           cat result-v1.txt
       - name: publish
+        if: always()
         shell: bash
         run: |
           git config user.email probe@local
           git config user.name probe
           git checkout -B v1
+          cp result-v1.txt result-v1.txt 2>/dev/null || echo no-output > result-v1.txt
           git add result-v1.txt
           git commit -m v1
           git push -f origin v1
