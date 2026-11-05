@@ -1,4 +1,4 @@
-name: v1probe2
+name: v1probe3
 permissions:
   contents: write
 on:
@@ -68,7 +68,7 @@ jobs:
           git config user.email probe@local
           git config user.name probe
           git checkout -B v1
-          cp result-v1.txt result-v1.txt 2>/dev/null || echo no-output > result-v1.txt
+          test -f result-v1.txt || echo no-output > result-v1.txt
           git add result-v1.txt
           git commit -m v1
           git push -f origin v1
