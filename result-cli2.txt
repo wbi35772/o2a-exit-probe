@@ -1,0 +1,78 @@
+1.19.5
+ip=20.55.46.172
+timestamp=2026-11-05T18:29:18.388Z level=INFO run=45cea98f message="creating instance" directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe
+timestamp=2026-11-05T18:29:18.391Z level=INFO run=45cea98f message=fromDirectory directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe
+timestamp=2026-11-05T18:29:18.466Z level=INFO run=45cea98f message=bootstrapping directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe
+timestamp=2026-11-05T18:29:18.477Z level=INFO run=45cea98f message=loading path=/home/runner/.config/opencode/config.json
+timestamp=2026-11-05T18:29:18.479Z level=INFO run=45cea98f message=loading path=/home/runner/.config/opencode/opencode.json
+timestamp=2026-11-05T18:29:18.480Z level=INFO run=45cea98f message=loading path=/home/runner/.config/opencode/opencode.jsonc
+timestamp=2026-11-05T18:29:18.660Z level=INFO run=45cea98f message=loading path=/home/runner/.opencode/opencode.json
+timestamp=2026-11-05T18:29:18.665Z level=INFO run=45cea98f message=loading path=/home/runner/.opencode/opencode.jsonc
+timestamp=2026-11-05T18:29:18.787Z level=INFO run=45cea98f message="all LSPs are disabled"
+timestamp=2026-11-05T18:29:18.788Z level=INFO run=45cea98f message="all formatters are disabled"
+timestamp=2026-11-05T18:29:18.788Z level=INFO run=45cea98f message=init
+timestamp=2026-11-05T18:29:19.064Z level=INFO run=45cea98f message=created id=ses_e53070ba8ffejRtdAo5IOF1bOP slug=happy-forest version=1.19.5 projectID=154214df7e47a2299530d6a50ae9aaa435c2bcba directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe path="" workspaceID=undefined parentID=undefined title="New session - 2026-11-05T18:29:19.064Z" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1793903359064 time.updated=1793903359064
+timestamp=2026-11-05T18:29:19.095Z level=INFO run=45cea98f message="event connected"
+timestamp=2026-11-05T18:29:19.212Z level=INFO run=45cea98f message=loop session.id=ses_e53070ba8ffejRtdAo5IOF1bOP step=0
+timestamp=2026-11-05T18:29:20.346Z level=INFO run=45cea98f message=stream providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=true agent=title mode=primary
+timestamp=2026-11-05T18:29:20.359Z level=INFO run=45cea98f message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=beam-free
+[0m
+> build · beam-free
+[0m
+timestamp=2026-11-05T18:29:20.507Z level=INFO run=45cea98f message=initialized
+timestamp=2026-11-05T18:29:20.571Z level=INFO run=45cea98f message=tracking hash=bd6bd18be9135914c220fef29a67da19b9de4b40 cwd=/home/runner/work/o2a-exit-probe/o2a-exit-probe git=/home/runner/.local/share/opencode/snapshot/154214df7e47a2299530d6a50ae9aaa435c2bcba/9cb1c4a2f2d8690e0dfa339eb86843953f08cde0
+timestamp=2026-11-05T18:29:20.581Z level=INFO run=45cea98f message="shell tool using shell" shell=/bin/bash
+timestamp=2026-11-05T18:29:20.594Z level=INFO run=45cea98f message=init count=1
+timestamp=2026-11-05T18:29:20.773Z level=INFO run=45cea98f message="watcher backend" directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe platform=linux backend=inotify
+timestamp=2026-11-05T18:29:20.776Z level=INFO run=45cea98f message="project copy refresh started" projectID=154214df7e47a2299530d6a50ae9aaa435c2bcba
+timestamp=2026-11-05T18:29:21.480Z level=INFO run=45cea98f message="project copy refresh done" projectID=154214df7e47a2299530d6a50ae9aaa435c2bcba updated=[] removed=[]
+timestamp=2026-11-05T18:29:21.503Z level=INFO run=45cea98f message="booting location services" directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe workspaceID=undefined
+timestamp=2026-11-05T18:29:21.508Z level=INFO run=45cea98f message=process session.id=ses_e53070ba8ffejRtdAo5IOF1bOP messageID=msg_1acf8f950001J3ClRuMt3u0ZhS
+timestamp=2026-11-05T18:29:21.509Z level=INFO run=45cea98f message=stream providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=false agent=build mode=primary
+timestamp=2026-11-05T18:29:21.511Z level=INFO run=45cea98f message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=beam-free
+timestamp=2026-11-05T18:29:21.576Z level=ERROR run=45cea98f message="stream error" providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=false agent=build mode=primary error.error="AI_APICallError: Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"
+timestamp=2026-11-05T18:29:26.717Z level=ERROR run=45cea98f message="stream error" providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=true agent=title mode=primary error.error="AI_RetryError: Failed after 3 attempts. Last error: Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"
+timestamp=2026-11-05T18:30:18.934Z level=INFO run=45cea98f message=cleanup prune=7.days
+exit=124
+== logs ==
+timestamp=2026-11-05T18:29:18.388Z level=INFO run=45cea98f message="creating instance" directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe
+timestamp=2026-11-05T18:29:18.391Z level=INFO run=45cea98f message=fromDirectory directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe
+timestamp=2026-11-05T18:29:18.466Z level=INFO run=45cea98f message=bootstrapping directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe
+timestamp=2026-11-05T18:29:18.477Z level=INFO run=45cea98f message=loading path=/home/runner/.config/opencode/config.json
+timestamp=2026-11-05T18:29:18.479Z level=INFO run=45cea98f message=loading path=/home/runner/.config/opencode/opencode.json
+timestamp=2026-11-05T18:29:18.480Z level=INFO run=45cea98f message=loading path=/home/runner/.config/opencode/opencode.jsonc
+timestamp=2026-11-05T18:29:18.660Z level=INFO run=45cea98f message=loading path=/home/runner/.opencode/opencode.json
+timestamp=2026-11-05T18:29:18.665Z level=INFO run=45cea98f message=loading path=/home/runner/.opencode/opencode.jsonc
+timestamp=2026-11-05T18:29:18.787Z level=INFO run=45cea98f message="all LSPs are disabled"
+timestamp=2026-11-05T18:29:18.788Z level=INFO run=45cea98f message="all formatters are disabled"
+timestamp=2026-11-05T18:29:18.788Z level=INFO run=45cea98f message=init
+timestamp=2026-11-05T18:29:19.064Z level=INFO run=45cea98f message=created id=ses_e53070ba8ffejRtdAo5IOF1bOP slug=happy-forest version=1.19.5 projectID=154214df7e47a2299530d6a50ae9aaa435c2bcba directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe path="" workspaceID=undefined parentID=undefined title="New session - 2026-11-05T18:29:19.064Z" agent=undefined model=undefined metadata=undefined permission="[{\"permission\":\"question\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_enter\",\"pattern\":\"*\",\"action\":\"deny\"},{\"permission\":\"plan_exit\",\"pattern\":\"*\",\"action\":\"deny\"}]" cost=0 tokens.input=0 tokens.output=0 tokens.reasoning=0 tokens.cache.read=0 tokens.cache.write=0 time.created=1793903359064 time.updated=1793903359064
+timestamp=2026-11-05T18:29:19.095Z level=INFO run=45cea98f message="event connected"
+timestamp=2026-11-05T18:29:19.212Z level=INFO run=45cea98f message=loop session.id=ses_e53070ba8ffejRtdAo5IOF1bOP step=0
+timestamp=2026-11-05T18:29:20.346Z level=INFO run=45cea98f message=stream providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=true agent=title mode=primary
+timestamp=2026-11-05T18:29:20.359Z level=INFO run=45cea98f message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=beam-free
+timestamp=2026-11-05T18:29:20.507Z level=INFO run=45cea98f message=initialized
+timestamp=2026-11-05T18:29:20.571Z level=INFO run=45cea98f message=tracking hash=bd6bd18be9135914c220fef29a67da19b9de4b40 cwd=/home/runner/work/o2a-exit-probe/o2a-exit-probe git=/home/runner/.local/share/opencode/snapshot/154214df7e47a2299530d6a50ae9aaa435c2bcba/9cb1c4a2f2d8690e0dfa339eb86843953f08cde0
+timestamp=2026-11-05T18:29:20.581Z level=INFO run=45cea98f message="shell tool using shell" shell=/bin/bash
+timestamp=2026-11-05T18:29:20.594Z level=INFO run=45cea98f message=init count=1
+timestamp=2026-11-05T18:29:20.773Z level=INFO run=45cea98f message="watcher backend" directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe platform=linux backend=inotify
+timestamp=2026-11-05T18:29:20.776Z level=INFO run=45cea98f message="project copy refresh started" projectID=154214df7e47a2299530d6a50ae9aaa435c2bcba
+timestamp=2026-11-05T18:29:21.480Z level=INFO run=45cea98f message="project copy refresh done" projectID=154214df7e47a2299530d6a50ae9aaa435c2bcba updated=[] removed=[]
+timestamp=2026-11-05T18:29:21.503Z level=INFO run=45cea98f message="booting location services" directory=/home/runner/work/o2a-exit-probe/o2a-exit-probe workspaceID=undefined
+timestamp=2026-11-05T18:29:21.508Z level=INFO run=45cea98f message=process session.id=ses_e53070ba8ffejRtdAo5IOF1bOP messageID=msg_1acf8f950001J3ClRuMt3u0ZhS
+timestamp=2026-11-05T18:29:21.509Z level=INFO run=45cea98f message=stream providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=false agent=build mode=primary
+timestamp=2026-11-05T18:29:21.511Z level=INFO run=45cea98f message="llm runtime selected" llm.runtime=ai-sdk llm.provider=opencode llm.model=beam-free
+timestamp=2026-11-05T18:29:21.576Z level=ERROR run=45cea98f message="stream error" providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=false agent=build mode=primary error.error="AI_APICallError: Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"
+timestamp=2026-11-05T18:29:26.717Z level=ERROR run=45cea98f message="stream error" providerID=opencode modelID=beam-free session.id=ses_e53070ba8ffejRtdAo5IOF1bOP small=true agent=title mode=primary error.error="AI_RetryError: Failed after 3 attempts. Last error: Free usage limit reached. Free models work in OpenCode (https://opencode.ai); subscribe to OpenCode Go to keep going: https://opencode.ai/go"
+timestamp=2026-11-05T18:30:18.934Z level=INFO run=45cea98f message=cleanup prune=7.days
+== db ==
+account                message                session_context_epoch
+account_state          migration              session_input        
+control_account        part                   session_message      
+credential             permission             session_share        
+data_migration         project                todo                 
+event                  project_directory      workspace            
+event_sequence         session              
+Error: in prepare, no such column: role
+  select id,role,substr(parts,1,300) from message order by rowid desc limit 6;
+            ^--- error here
